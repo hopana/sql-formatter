@@ -95,7 +95,8 @@ article.config input[type='number'] {
 
 pre,code {
   overflow: scroll;
-  white-space: pre-wrap
+  white-space: pre-wrap;
+  font-size: .9rem !important;
 }
 
 .output .code-toolbar > pre {
@@ -108,7 +109,7 @@ textarea {
   padding: 20px;
   border: 0;
   box-sizing: border-box;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   resize: none;
   outline: none;
   line-height: 1.3;
