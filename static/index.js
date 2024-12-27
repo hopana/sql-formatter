@@ -1,6 +1,8 @@
 const attachFormat = () => {
   const input = document.getElementById('input');
   const output = document.getElementById('output');
+  const resultDiv = document.getElementById('resultDiv');
+  const highlighted = document.getElementById('sql-highlighted');
   const error = document.getElementById('error');
 
   const language = document.getElementById('language');
@@ -19,13 +21,23 @@ const attachFormat = () => {
 
   function showOutput(text) {
     output.value = text;
-    output.style.display = 'block';
+    highlighted.textContent = text; // 注意：这里不用 innerText，因为 innerText 会把 HTML 标签转义，不会换行
+    //output.style.display = 'block';
+
+    window.Prism = window.Prism || {};
+    window.Prism.manual = true;
+    if (highlighted) {
+      Prism.highlightElement(highlighted);
+    }
+
+    resultDiv.style.display = 'block';
     error.style.display = 'none';
   }
 
   function showError(text) {
     error.innerHTML = text;
-    output.style.display = 'none';
+    //output.style.display = 'none';
+    resultDiv.style.display = 'none';
     error.style.display = 'block';
   }
 

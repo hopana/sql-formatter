@@ -18,27 +18,16 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet" />
 
-    <link href="index.css" rel="stylesheet" />
+    <link href="./index.css" rel="stylesheet" />
+    <link href="./prism.css" rel="stylesheet" />
   </head>
 
   <body>
     <header>
-      <img src="./prettier-sql-clean.svg" height="32" width="32" alt="logo" />
+      <a href="https://github.com/sql-formatter-org/sql-formatter">
+        <img src="./prettier-sql-clean.svg" height="32" width="32" alt="logo" />
+      </a>
       <h1 class="title">SQL Formatter</h1>
-
-      <div class="buttons">
-        <a href="https://www.npmjs.com/package/sql-formatter">
-          <img src="https://img.shields.io/npm/v/sql-formatter.svg" height="18" />
-        </a>
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=sql-formatter-org&repo=sql-formatter&type=star&count=true"
-          frameborder="0"
-          scrolling="0"
-          width="120px"
-          height="20px"
-          style="position: relative; top: 1px"
-        ></iframe>
-      </div>
     </header>
     <main>
       <aside class="options-menu">
@@ -166,7 +155,10 @@ order by supplier_name asc,city desc;</textarea
           >
         </section>
         <section class="output">
-          <textarea id="output" readonly wrap="off"></textarea>
+          <textarea style="display:none" id="output" readonly wrap="off" onkeyup="this.onchange();" onchange="document.getElementById('sql-highlighted').textContent = this.value; Prism.highlightElement(this);"></textarea>
+          <div id = "resultDiv">
+            <pre><code class="language-sql" id="sql-highlighted"></code></pre>
+          </div>
           <div id="error" class="error"></div>
         </section>
       </div>
@@ -176,6 +168,10 @@ order by supplier_name asc,city desc;</textarea
       type="text/javascript"
       src="https://unpkg.com/sql-formatter@latest/dist/sql-formatter.min.js"
     ></script>
-    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript" src="./prism.js"></script>
+    <script>
+
+    </script>
   </body>
 </html>
