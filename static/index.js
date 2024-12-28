@@ -100,4 +100,55 @@ const attachFormat = () => {
   format();
 };
 
+// 添加拖拽功能
+function initResizer() {
+  const resizer = document.getElementById('dragMe');
+  const leftSide = resizer.previousElementSibling;
+  const rightSide = resizer.nextElementSibling;
+
+  // 鼠标按下事件处理
+  const mouseDownHandler = function(e) {
+    document.body.style.cursor = 'col-resize';
+    resizer.classList.add('dragging');
+    
+    // 获取鼠标按下时的位置
+    const startX = e.clientX;
+    const leftWidth = leftSide.getBoundingClientRect().width;
+
+    // 鼠标移动事件处理
+    const mouseMoveHandler = function(e) {
+      // 计算移动距离
+      const dx = e.clientX - startX;
+      
+      // 计算新的左侧宽度（保持在合理范围内）
+      const newLeftWidth = Math.max(200, Math.min(leftWidth + dx, 
+        resizer.parentNode.getBoundingClientRect().width - 200));
+      
+      // 设置新的宽度
+      leftSide.style.width = `${newLeftWidth}px`;
+      leftSide.style.flex = 'none';
+      rightSide.style.flex = '1';
+    };
+
+    // 鼠标松开事件处理
+    const mouseUpHandler = function() {
+      document.body.style.cursor = '';
+      resizer.classList.remove('dragging');
+      
+      // 移除事件监听
+      document.removeEventListener('mousemove', mouseMoveHandler);
+      document.removeEventListener('mouseup', mouseUpHandler);
+    };
+
+    // 添加事件监听
+    document.addEventListener('mousemove', mouseMoveHandler);
+    document.addEventListener('mouseup', mouseUpHandler);
+  };
+
+  // 为分隔条添加鼠标按下事件监听
+  resizer.addEventListener('mousedown', mouseDownHandler);
+}
+
 document.addEventListener('DOMContentLoaded', attachFormat);
+// 在页面加载完成后初始化拖拽功能
+document.addEventListener('DOMContentLoaded', initResizer);
