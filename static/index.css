@@ -57,6 +57,7 @@ aside.options-menu {
   height: 100%;
   overflow: auto;
   background-color: aliceblue;
+  border-right: 2px solid #8dc63f;
 }
 
 article.config {
@@ -84,7 +85,6 @@ article.config input[type='number'] {
   align-items: stretch;
   width: 50%;
   height: 100%;
-  border-left: 2px solid #8dc63f;
   overflow: auto;
 }
 
@@ -129,18 +129,22 @@ textarea {
 }
 
 .resizer {
-  width: 4px;
+  width: 6px;
   background-color: #eee;
   cursor: col-resize;
   margin: 0 1px;
   border-left: 1px solid #ddd;
   border-right: 1px solid #ddd;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAWCAYAAADq8U2pAAAAFklEQVQI12M4c+bMfxBmgDPwgMGqGAAuBkO97tXVLwAAAABJRU5ErkJggg==);
+  background-position: 50%;
+  background-repeat: no-repeat;
 }
 
 .resizer:hover {
-  background-color: #ccc;
+  background-color: #ddd;
 }
 
 .resizer.dragging {
-  background-color: #ccc;
+  background-color: #ddd;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAWCAYAAADq8U2pAAAAFklEQVQI12OQm/D/PwgzwBl4wGBVDACNjjVxrtmP1AAAAABJRU5ErkJggg==)
 }
