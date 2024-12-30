@@ -10,12 +10,11 @@ body {
 
 *::-webkit-scrollbar {
   width: 6px;
-  height: .5px;
+  height: 6px;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  /*-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);*/
   background: #dadee0;
 }
 
@@ -74,98 +73,72 @@ article.config input[type='number'] {
   display: flex;
   flex: 1;
   min-height: 0;
+  padding: 2px;
 }
 
-.input {
-  flex: 1;
-  min-width: 200px;
-  font-size: 1em;
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-  border-left: 2px solid #8dc63f;
-  border-right: 4px solid #e0e0e0;
-  overflow: auto;
-  position: relative;
-}
-
-.input:hover {
-  border-right-color: #8dc63f;
-}
-
-.input::after {
-  content: '';
-  position: absolute;
-  right: -6px;
-  top: 0;
-  width: 12px;
-  height: 100%;
-  cursor: col-resize;
-  background: transparent;
-}
-
-.input.dragging {
-  border-right-color: #8dc63f;
-  border-right-width: 4px;
-}
-
+.input,
 .output {
   flex: 1;
   min-width: 200px;
   font-size: 1em;
   display: flex;
-  align-items: stretch;
   height: 100%;
+}
+
+.input {
   overflow: auto;
 }
 
-.output .code-toolbar, .output .code-toolbar > pre {
-  width: 100%;
-  height: 100%;
+.output {
+  overflow: hidden;
 }
 
 #resultDiv {
   width: 100%;
+  height: 100%;
 }
 
-pre,code {
-  overflow: scroll;
-  white-space: pre-wrap;
-  font-size: .9rem !important;
+.output .code-toolbar {
+  width: 100%;
+  height: 100%;
 }
 
 .output .code-toolbar > pre {
+  width: 100%;
+  height: 100%;
   margin: 0;
+  padding: 15px;
   background: #fff;
+  overflow: auto;
+  box-sizing: border-box;
 }
 
 textarea {
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   border: 0;
   box-sizing: border-box;
   font-size: 0.9rem;
   resize: none;
   outline: none;
   line-height: 1.3;
+  white-space: pre;
   font-family: 'Consolas', 'Segoe UI', 'Roboto Mono', '微软雅黑', monospace;
+  overflow: auto;
 }
 
 .error {
   display: none;
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   border: 4px solid salmon;
   background: rgb(255, 237, 230);
 }
 
 .resizer {
-  width: 6px;
+  flex: 0 0 6px;
   background-color: #eee;
   cursor: col-resize;
-  margin: 0 1px;
-  border-left: 1px solid #ddd;
-  border-right: 1px solid #ddd;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAWCAYAAADq8U2pAAAAFklEQVQI12M4c+bMfxBmgDPwgMGqGAAuBkO97tXVLwAAAABJRU5ErkJggg==);
   background-position: 50%;
   background-repeat: no-repeat;
@@ -178,4 +151,14 @@ textarea {
 .resizer.dragging {
   background-color: #ddd;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAWCAYAAADq8U2pAAAAFklEQVQI12OQm/D/PwgzwBl4wGBVDACNjjVxrtmP1AAAAABJRU5ErkJggg==)
+}
+
+pre,
+code {
+  white-space: pre;
+  font-size: .9rem !important;
+}
+
+pre code {
+  display: block;
 }
