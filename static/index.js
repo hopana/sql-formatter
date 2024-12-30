@@ -111,10 +111,18 @@ function initResizer() {
     document.body.style.cursor = 'col-resize';
     resizer.classList.add('dragging');
 
+    // 添加禁用文本选择的样式
+    document.body.style.userSelect = 'none';
+    document.body.style.webkitUserSelect = 'none';
+    document.body.style.msUserSelect = 'none';
+
     // 获取鼠标按下时的位置
     const startX = e.clientX;
     const leftWidth = leftSide.getBoundingClientRect().width;
     const containerWidth = resizer.parentNode.getBoundingClientRect().width - 6; // 减去resizer宽度
+
+    const inputArea = document.getElementById('input');
+    const outputPre = document.getElementById('resultPre');
 
     // 鼠标移动事件处理
     const mouseMoveHandler = function (e) {
@@ -129,10 +137,13 @@ function initResizer() {
       // 设置新的宽度
       leftSide.style.width = `${leftPercent}%`;
       rightSide.style.width = `${rightPercent}%`;
-      
+
       // 确保flex属性保持为1
       leftSide.style.flex = '0 1 auto';
       rightSide.style.flex = '0 1 auto';
+
+      inputArea.style.overflow = 'hidden';
+      outputPre.style.overflow = 'hidden';
     };
 
     // 鼠标松开事件处理
@@ -140,7 +151,15 @@ function initResizer() {
       document.body.style.cursor = '';
       resizer.classList.remove('dragging');
 
-      // 移除事件监听
+      // 移除禁用文本选择的样式
+      document.body.style.userSelect = '';
+      document.body.style.webkitUserSelect = '';
+      document.body.style.msUserSelect = '';
+      document.body.style.overflow = 'auto';
+
+      inputArea.style.overflow = 'auto';
+      outputPre.style.overflow = 'auto';
+
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
     };

@@ -158,7 +158,7 @@ order by supplier_name asc,city desc;</textarea
         <div class="output">
           <textarea style="display:none" id="output" readonly wrap="off" onkeyup="this.onchange();" onchange="document.getElementById('sql-highlighted').textContent = this.value; Prism.highlightElement(this);"></textarea>
           <div id = "resultDiv">
-            <pre class="line-numbers"><code class="language-sql" id="sql-highlighted"></code></pre>
+            <pre id="resultPre" class="line-numbers"><code class="language-sql" id="sql-highlighted"></code></pre>
           </div>
           <div id="error" class="error"></div>
         </div>
