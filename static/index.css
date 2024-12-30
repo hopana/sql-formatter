@@ -75,16 +75,46 @@ article.config input[type='number'] {
   min-height: 0;
 }
 
-.input,
+.input {
+  flex: 1;
+  min-width: 200px;
+  font-size: 1em;
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  border-left: 2px solid #8dc63f;
+  border-right: 4px solid #e0e0e0;
+  overflow: auto;
+  position: relative;
+}
+
+.input:hover {
+  border-right-color: #8dc63f;
+}
+
+.input::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 0;
+  width: 12px;
+  height: 100%;
+  cursor: col-resize;
+  background: transparent;
+}
+
+.input.dragging {
+  border-right-color: #8dc63f;
+  border-right-width: 4px;
+}
+
 .output {
   flex: 1;
   min-width: 200px;
   font-size: 1em;
   display: flex;
   align-items: stretch;
-  width: 50%;
   height: 100%;
-  border-left: 2px solid #8dc63f;
   overflow: auto;
 }
 

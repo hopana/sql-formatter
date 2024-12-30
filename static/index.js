@@ -102,14 +102,19 @@ const attachFormat = () => {
 
 // 添加拖拽功能
 function initResizer() {
-  const resizer = document.getElementById('dragMe');
-  const leftSide = resizer.previousElementSibling;
-  const rightSide = resizer.nextElementSibling;
+  const leftSide = document.querySelector('.input');
+  const rightSide = document.querySelector('.output');
 
   // 鼠标按下事件处理
   const mouseDownHandler = function(e) {
+    // 只有当鼠标在边框附近时才触发拖拽
+    const rect = leftSide.getBoundingClientRect();
+    if (Math.abs(e.clientX - (rect.right)) > 4) {
+      return;
+    }
+
     document.body.style.cursor = 'col-resize';
-    resizer.classList.add('dragging');
+    leftSide.classList.add('dragging');
     
     // 获取鼠标按下时的位置
     const startX = e.clientX;
@@ -122,7 +127,7 @@ function initResizer() {
       
       // 计算新的左侧宽度（保持在合理范围内）
       const newLeftWidth = Math.max(200, Math.min(leftWidth + dx, 
-        resizer.parentNode.getBoundingClientRect().width - 200));
+        leftSide.parentNode.getBoundingClientRect().width - 200));
       
       // 设置新的宽度
       leftSide.style.width = `${newLeftWidth}px`;
@@ -133,7 +138,7 @@ function initResizer() {
     // 鼠标松开事件处理
     const mouseUpHandler = function() {
       document.body.style.cursor = '';
-      resizer.classList.remove('dragging');
+      leftSide.classList.remove('dragging');
       
       // 移除事件监听
       document.removeEventListener('mousemove', mouseMoveHandler);
@@ -145,8 +150,8 @@ function initResizer() {
     document.addEventListener('mouseup', mouseUpHandler);
   };
 
-  // 为分隔条添加鼠标按下事件监听
-  resizer.addEventListener('mousedown', mouseDownHandler);
+  // 为左侧区域添加鼠标按下事件监听
+  leftSide.addEventListener('mousedown', mouseDownHandler);
 }
 
 document.addEventListener('DOMContentLoaded', attachFormat);
