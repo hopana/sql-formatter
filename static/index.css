@@ -145,11 +145,11 @@ textarea {
 }
 
 .resizer:hover {
-  background-color: #ddd;
+  background-color: #e2e8ee;
 }
 
 .resizer.dragging {
-  background-color: #ddd;
+  background-color: #d9e1ea;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAWCAYAAADq8U2pAAAAFklEQVQI12OQm/D/PwgzwBl4wGBVDACNjjVxrtmP1AAAAABJRU5ErkJggg==)
 }
 
