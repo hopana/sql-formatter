@@ -22,7 +22,7 @@ const attachFormat = () => {
   function showOutput(text) {
     output.value = text;
     highlighted.textContent = text; // 注意：这里不用 innerText，因为 innerText 会把 HTML 标签转义，不会换行
-    //output.style.display = 'block';
+    // output.style.display = 'block';
 
     window.Prism = window.Prism || {};
     window.Prism.manual = true;
@@ -107,34 +107,39 @@ function initResizer() {
   const rightSide = resizer.nextElementSibling;
 
   // 鼠标按下事件处理
-  const mouseDownHandler = function(e) {
+  const mouseDownHandler = function (e) {
     document.body.style.cursor = 'col-resize';
     resizer.classList.add('dragging');
-    
+
     // 获取鼠标按下时的位置
     const startX = e.clientX;
     const leftWidth = leftSide.getBoundingClientRect().width;
+    const containerWidth = resizer.parentNode.getBoundingClientRect().width - 6; // 减去resizer宽度
 
     // 鼠标移动事件处理
-    const mouseMoveHandler = function(e) {
+    const mouseMoveHandler = function (e) {
       // 计算移动距离
       const dx = e.clientX - startX;
-      
+
       // 计算新的左侧宽度（保持在合理范围内）
-      const newLeftWidth = Math.max(200, Math.min(leftWidth + dx, 
-        resizer.parentNode.getBoundingClientRect().width - 200));
-      
+      const newLeftWidth = Math.max(200, Math.min(leftWidth + dx, containerWidth - 200));
+      const leftPercent = (newLeftWidth / containerWidth) * 100;
+      const rightPercent = 100 - leftPercent;
+
       // 设置新的宽度
-      leftSide.style.width = `${newLeftWidth}px`;
-      leftSide.style.flex = 'none';
-      rightSide.style.flex = '1';
+      leftSide.style.width = `${leftPercent}%`;
+      rightSide.style.width = `${rightPercent}%`;
+      
+      // 确保flex属性保持为1
+      leftSide.style.flex = '0 1 auto';
+      rightSide.style.flex = '0 1 auto';
     };
 
     // 鼠标松开事件处理
-    const mouseUpHandler = function() {
+    const mouseUpHandler = function () {
       document.body.style.cursor = '';
       resizer.classList.remove('dragging');
-      
+
       // 移除事件监听
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
