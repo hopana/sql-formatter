@@ -8,19 +8,24 @@ body {
   font-family: 'Roboto Mono', monospace;
 }
 
-*::-webkit-scrollbar {
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+:hover::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   cursor: default;
   border-radius: 10px;
-  background: #dadee0;
+  background-color: #a4a4a4;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a4abb4 !important;
+:active::-webkit-scrollbar-thumb {
+  background: #858585;
 }
 
 header {
